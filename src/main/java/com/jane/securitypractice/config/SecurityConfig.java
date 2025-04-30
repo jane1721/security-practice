@@ -22,7 +22,7 @@ public class SecurityConfig {
                     .logoutSuccessUrl("/login?logout=true")
             )
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/login").permitAll()
+                    .requestMatchers("/login", "/register").permitAll()
                     .anyRequest().authenticated()
             );
         return http.build();
