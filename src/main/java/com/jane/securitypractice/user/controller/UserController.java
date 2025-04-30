@@ -3,12 +3,9 @@ package com.jane.securitypractice.user.controller;
 import com.jane.securitypractice.user.domain.User;
 import com.jane.securitypractice.user.dto.UserRegisterDto;
 import com.jane.securitypractice.user.repository.UserRepository;
-import com.jane.securitypractice.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,23 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/register")
     public String registerPage(@ModelAttribute("user") UserRegisterDto userDto) { // form 바인딩 용 dto 객체를 미리 뷰에 전달
         return "register";
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/users")
-    public String userListPage(Model model) {
-
-        List<User> users = userService.findAllUsers();
-        model.addAttribute("users", users);
-
-        return "user-list";
     }
 
     @PostMapping("/register")
