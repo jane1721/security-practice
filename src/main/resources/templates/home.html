@@ -6,6 +6,9 @@
 <body>
 <h1>홈 화면입니다.</h1>
 
+<p><a th:href="@{/user}">User Page</a></p>
+<p><a th:href="@{/admin}">Admin Page</a></p>
+
 <form th:action="@{/logout}" method="post">
     <button type="submit">로그아웃</button>
 </form>

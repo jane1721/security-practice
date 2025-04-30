@@ -15,4 +15,19 @@ public class LoginUiController {
     public String homePage() {
         return "home";
     }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin";
+    }
+
+    @GetMapping("/user")
+    public String userPage() {
+        return "user";
+    }
+
+    @GetMapping("/access-denied")
+    public String deniedPage() {
+        return "access-denied";
+    }
 }

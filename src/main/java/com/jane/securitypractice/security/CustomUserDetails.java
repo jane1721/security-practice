@@ -22,7 +22,7 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name())) // 앞에 ROLE_ 을 붙여야 Spring Security 권한 인식
+                .map(role -> new SimpleGrantedAuthority(role.getKey()))
                 .collect(Collectors.toList());
     }
 

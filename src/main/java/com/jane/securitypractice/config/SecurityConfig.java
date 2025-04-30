@@ -1,5 +1,6 @@
 package com.jane.securitypractice.config;
 
+import com.jane.securitypractice.user.domain.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,8 +27,13 @@ public class SecurityConfig {
                     .deleteCookies("JSESSIONID") // 세션 쿠키 제거
             )
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/login", "/register").permitAll()
+                    .requestMatchers("/login", "/register", "/access-denied").permitAll()
+                    .requestMatchers("/user/**").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
+                    .requestMatchers("/admin/**").hasRole(Role.ADMIN.name()) // 내부적으로 ROLE_ADMIN 과 비교
                     .anyRequest().authenticated()
+            )
+            .exceptionHandling(e -> e
+                    .accessDeniedPage("/access-denied")
             );
         return http.build();
     }
