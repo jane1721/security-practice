@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 목록</title>
+</head>
+<body>
+<h1>회원 목록 (Admin)</h1>
+
+<table border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Roles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.username}">jane</td>
+        <td>
+            <ul>
+                <li th:each="role : ${user.roles}" th:text="${role}">USER</li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p><a th:href="@{/admin}">관리자 페이지로 돌아가기</a></p>
+<p><a th:href="@{/}">홈으로</a></p>
+</body>
+</html>
