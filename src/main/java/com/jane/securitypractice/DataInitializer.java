@@ -1,5 +1,6 @@
 package com.jane.securitypractice;
 
+import com.jane.securitypractice.user.domain.Role;
 import com.jane.securitypractice.user.domain.User;
 import com.jane.securitypractice.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class DataInitializer {
             userRepository.save(User.builder()
                 .username("user1")
                 .password(passwordEncoder.encode("pass1234"))
-                .roles(List.of("ROLE_USER"))
+                .roles(List.of(Role.USER))
                 .build());
         };
     }

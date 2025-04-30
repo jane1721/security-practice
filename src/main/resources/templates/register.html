@@ -17,6 +17,13 @@
         <input type="password" th:field="*{password}"/>
         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     </div>
+    <div>
+        <label>역할 선택:</label>
+        <select th:field="*{selectedRole}">
+            <option th:value="${T(com.jane.securitypractice.user.domain.Role).USER}">USER</option>
+            <option th:value="${T(com.jane.securitypractice.user.domain.Role).ADMIN}">ADMIN</option>
+        </select>
+    </div>
     <button type="submit">가입하기</button>
 </form>
 

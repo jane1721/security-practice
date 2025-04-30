@@ -36,7 +36,7 @@ public class UserController {
         User user = User.builder()
                 .username(userDto.getUsername())
                 .password(passwordEncoder.encode(userDto.getPassword()))
-                .roles(List.of("ROLE_USER")) // 기본 권한 부여
+                .roles(List.of(userDto.getSelectedRole()))
                 .build();
 
         userRepository.save(user);
