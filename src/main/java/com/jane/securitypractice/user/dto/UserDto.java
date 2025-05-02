@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,5 +14,5 @@ public class UserDto {
 
     private Long id;
     private String username;
-    private List<Role> roles;
+    private Set<Role> roles;
 }

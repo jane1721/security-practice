@@ -23,9 +23,14 @@
                 <li th:each="role : ${user.roles}" th:text="${role}">USER</li>
             </ul>
         </td>
+        <td>
+            <a th:href="@{'/admin/users/' + ${user.id} + '/edit-role'}">권한 변경</a>
+        </td>
     </tr>
     </tbody>
 </table>
+
+<p th:if="${success}" th:text="${success}"></p>
 
 <p><a th:href="@{/admin}">관리자 페이지로 돌아가기</a></p>
 <p><a th:href="@{/}">홈으로</a></p>

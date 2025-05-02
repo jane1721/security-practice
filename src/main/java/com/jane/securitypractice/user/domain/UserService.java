@@ -3,8 +3,10 @@ package com.jane.securitypractice.user.domain;
 import com.jane.securitypractice.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,5 +20,16 @@ public class UserService {
                 .stream()
                 .map(user -> new UserDto(user.getId(), user.getUsername(), user.getRoles()))
                 .collect(Collectors.toList());
+    }
+
+    public UserDto getUserById(Long id) {
+        User user = userRepository.findById(id);
+        return new UserDto(user.getId(), user.getUsername(), user.getRoles());
+    }
+
+    @Transactional // 트랜잭션 종료 시점에 Dirty Checking 으로 update SQL 이 실행
+    public void updateUserRoles(Long id, Set<Role> roles) {
+        User user = userRepository.findById(id);
+        user.updateRoles(roles); // 내부적으로 Spring Data JPA 의 Repository 을 사용하고 있으므로 영속성 컨텍스트 관리 대상
     }
 }

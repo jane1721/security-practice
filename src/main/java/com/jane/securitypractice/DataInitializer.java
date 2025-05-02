@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.List;
+import java.util.Set;
 
 @Configuration
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ public class DataInitializer {
             userRepository.save(User.builder()
                 .username("user1")
                 .password(passwordEncoder.encode("pass1234"))
-                .roles(List.of(Role.USER))
+                .roles(Set.of(Role.USER))
                 .build());
         };
     }
