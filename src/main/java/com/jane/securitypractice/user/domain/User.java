@@ -31,4 +31,8 @@ public class User {
         this.roles.clear(); // 기존 컬렉션 인스턴스 유지, 내부 요소만 변경
         this.roles.addAll(newRoles);
     }
+
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
+    }
 }

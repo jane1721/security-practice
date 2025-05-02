@@ -12,6 +12,7 @@
     <li th:each="role : ${roles}" th:text="${role}"></li>
 </ul>
 
+<p><a th:href="@{/user/change-password}">비밀번호 변경</a></p>
 <p><a th:href="@{/}">홈으로</a></p>
 </body>
 </html>
