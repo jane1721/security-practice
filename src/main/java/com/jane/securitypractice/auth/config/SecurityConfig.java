@@ -1,4 +1,4 @@
-package com.jane.securitypractice.config;
+package com.jane.securitypractice.auth.config;
 
 import com.jane.securitypractice.user.domain.Role;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
-package com.jane.securitypractice.security;
+package com.jane.securitypractice.auth.infrastructure;
 
-import com.jane.securitypractice.user.repository.UserRepository;
+import com.jane.securitypractice.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

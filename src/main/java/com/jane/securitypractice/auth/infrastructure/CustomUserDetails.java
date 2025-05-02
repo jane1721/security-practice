@@ -1,4 +1,4 @@
-package com.jane.securitypractice.security;
+package com.jane.securitypractice.auth.infrastructure;
 
 import com.jane.securitypractice.user.domain.User;
 import org.springframework.security.core.GrantedAuthority;

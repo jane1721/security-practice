@@ -1,7 +1,6 @@
-package com.jane.securitypractice.user.service;
+package com.jane.securitypractice.user.domain;
 
 import com.jane.securitypractice.user.dto.UserDto;
-import com.jane.securitypractice.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

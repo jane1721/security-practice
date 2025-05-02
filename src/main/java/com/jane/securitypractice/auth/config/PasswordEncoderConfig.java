@@ -1,4 +1,4 @@
-package com.jane.securitypractice.config;
+package com.jane.securitypractice.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

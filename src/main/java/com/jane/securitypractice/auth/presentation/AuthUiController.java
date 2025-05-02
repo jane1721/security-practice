@@ -1,13 +1,13 @@
-package com.jane.securitypractice.login;
+package com.jane.securitypractice.auth.presentation;
 
-import com.jane.securitypractice.security.CustomUserDetails;
+import com.jane.securitypractice.auth.infrastructure.CustomUserDetails;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class LoginUiController {
+public class AuthUiController {
 
     @GetMapping("/login")
     public String loginPage() {

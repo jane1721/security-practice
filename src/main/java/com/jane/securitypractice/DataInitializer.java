@@ -2,7 +2,7 @@ package com.jane.securitypractice;
 
 import com.jane.securitypractice.user.domain.Role;
 import com.jane.securitypractice.user.domain.User;
-import com.jane.securitypractice.user.repository.UserRepository;
+import com.jane.securitypractice.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

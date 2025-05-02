@@ -1,7 +1,7 @@
-package com.jane.securitypractice.user.controller;
+package com.jane.securitypractice.user.presentation;
 
 import com.jane.securitypractice.user.dto.UserDto;
-import com.jane.securitypractice.user.service.UserService;
+import com.jane.securitypractice.user.domain.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminUserController {
 
     private final UserService userService;
 

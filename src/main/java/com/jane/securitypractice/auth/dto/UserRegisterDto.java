@@ -1,4 +1,4 @@
-package com.jane.securitypractice.user.dto;
+package com.jane.securitypractice.auth.dto;
 
 import com.jane.securitypractice.user.domain.Role;
 import lombok.Getter;
