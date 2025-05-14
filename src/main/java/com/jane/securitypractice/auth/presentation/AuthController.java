@@ -23,11 +23,6 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/register")
-    public String registerPage(@ModelAttribute("user") UserRegisterDto userDto) { // form 바인딩 용 dto 객체를 미리 뷰에 전달
-        return "register";
-    }
-
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") UserRegisterDto userDto, RedirectAttributes redirectAttributes) {
 

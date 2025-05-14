@@ -21,7 +21,12 @@ public class AdminUserController {
 
     private final UserService userService;
 
-    /// 사용자 목록 화면
+    @GetMapping
+    public String adminPage() {
+        return "admin/admin";
+    }
+
+    // 사용자 목록 화면
     @PreAuthorize("hasRole('ADMIN')") // URL 패턴으로 SecurityConfig 에서 접근 제어하고 있으므로 @PreAuthorize 는 선택 사항
     @GetMapping("/users")
     public String userListPage(Model model) {
