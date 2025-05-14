@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>프로필 수정</title>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+<body>
+<h1>프로필 수정</h1>
+
+<!-- 조회 정보 -->
+<div>
+    <p><strong>사용자명:</strong> <span th:text="${username}"></span></p>
+
+    <p><strong>권한 목록:</strong></p>
+    <ul>
+        <li th:each="role : ${roles}" th:text="${role}"></li>
+    </ul>
+</div>
+
+<!-- 자기소개 수정 -->
+<div>
+    <label for="aboutMe"><strong>자기 소개 수정</strong></label>
+    <textarea id="aboutMe" rows="4" cols="50" th:text="${aboutMe}"></textarea><br>
+    <button id="saveAboutMeBtn">저장</button>
+</div>
+
+<!-- 홈으로 돌아가기 -->
+<p><a th:href="@{/user/profile}">프로필 페이지로 돌아가기</a></p>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        document.getElementById("saveAboutMeBtn").addEventListener("click", () => {
+            const aboutMeText = document.getElementById("aboutMe").value;
+
+            fetch("/user/profile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    [csrfHeader]: csrfToken
+                },
+                body: JSON.stringify({ aboutMe: aboutMeText })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("자기소개가 저장되었습니다.");
+                } else {
+                    alert("저장 실패");
+                }
+            })
+            .catch(error => {
+                console.error("오류 발생:", error);
+                alert("에러가 발생했습니다.");
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

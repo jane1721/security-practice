@@ -11,8 +11,10 @@
 <ul>
     <li th:each="role : ${roles}" th:text="${role}"></li>
 </ul>
+<p>자기소개: <span th:text="${aboutMe}"></span></p>
 
 <p><a th:href="@{/user/change-password}">비밀번호 변경</a></p>
+<p><a th:href="@{/user/profile/edit}">프로필 수정</a></p>
 <p><a th:href="@{/}">홈으로</a></p>
 </body>
 </html>

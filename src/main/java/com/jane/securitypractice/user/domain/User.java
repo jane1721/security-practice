@@ -27,6 +27,9 @@ public class User {
     @Enumerated(EnumType.STRING) // Enum 이름 그대로 저장
     private Set<Role> roles = new HashSet<>();
 
+    @Column(length = 500)
+    private String aboutMe;
+
     public void updateRoles(Set<Role> newRoles) {
         this.roles.clear(); // 기존 컬렉션 인스턴스 유지, 내부 요소만 변경
         this.roles.addAll(newRoles);
@@ -34,5 +37,9 @@ public class User {
 
     public void updatePassword(String newPassword) {
         this.password = newPassword;
+    }
+
+    public void updateAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
     }
 }
