@@ -30,6 +30,7 @@
 </form>
 
 <p th:if="${success}" th:text="${success}"></p>
+<p th:if="${error}" th:text="${error}"></p>
 
 <!-- 회원가입 페이지로 이동 -->
 <a th:href="@{/register}">

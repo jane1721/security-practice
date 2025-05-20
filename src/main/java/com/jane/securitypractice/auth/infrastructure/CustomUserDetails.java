@@ -59,4 +59,18 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
+
+    // 객체 주소 비교가 아닌 CustomUserDetails 객체의 유저 이름이 동일한지 비교하기 위한 오버라이딩 메서드
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof CustomUserDetails)) return false;
+        CustomUserDetails other = (CustomUserDetails) obj;
+        return this.getUsername().equals(other.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getUsername().hashCode();
+    }
 }

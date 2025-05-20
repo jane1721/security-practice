@@ -2,6 +2,7 @@ package com.jane.securitypractice.home.presentation;
 
 import com.jane.securitypractice.auth.dto.UserRegisterDto;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -10,6 +11,12 @@ public class HomeController {
 
     @GetMapping("/login")
     public String loginPage() {
+        return "home/login";
+    }
+
+    @GetMapping("/session-expired")
+    public String sessionExpired(Model model) {
+        model.addAttribute("error", "다른 기기에서 로그인하여 현재 세션이 종료되었습니다.");
         return "home/login";
     }
 
