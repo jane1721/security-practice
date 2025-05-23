@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>현재 로그인 세션 목록</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title">현재 로그인된 세션 목록</h1>
+        <table class="table is-striped is-fullwidth">
+            <thead>
+            <tr>
+                <th>사용자명</th>
+                <th>세션 ID</th>
+                <th>마지막 요청 시각</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="userSession : ${sessions}">
+                <td th:text="${userSession.username}">사용자명</td>
+                <td th:text="${userSession.sessionId}">세션 ID</td>
+                <td th:text="${#dates.format(userSession.lastRequestTime, 'yyyy-MM-dd HH:mm:ss')}">시간</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
