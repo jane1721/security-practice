@@ -73,7 +73,7 @@ public class SecurityConfig {
                      * - STATELESS : 세션을 생성도, 사용도 하지 않음 (JWT 등 토큰 인증 시 사용)
                      */
                     .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 기본값
-                    .maximumSessions(1) // 최대 허용 세션 수 (-1: 무제한)
+                    .maximumSessions(-1) // 최대 허용 세션 수 (-1: 무제한)
                     .maxSessionsPreventsLogin(false) // true: 새 로그인 거부, false: 이전 세션 만료 (기본값)
                     .sessionRegistry(sessionRegistry()) // Spring Security 내부적으로 SessionRegistry 를 통해 세션을 추적
                     .expiredUrl("/login")

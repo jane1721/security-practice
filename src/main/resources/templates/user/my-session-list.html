@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>내 세션 목록</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title">내 세션 목록</h1>
+        <table class="table is-striped is-fullwidth">
+            <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>만료 여부</th>
+                <th>강제 로그아웃</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="userSession : ${sessions}">
+                <td th:text="${userSession.sessionId}"></td>
+                <td th:text="${userSession.expired} ? '만료됨' : '활성'"></td>
+                <td>
+                    <form th:action="@{'/my-sessions/expire/' + ${userSession.sessionId}}" method="post">
+                        <button type="submit" th:disabled="${userSession.expired}">로그아웃</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

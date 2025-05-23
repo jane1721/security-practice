@@ -1,6 +1,7 @@
 package com.jane.securitypractice.auth.presentation;
 
 import com.jane.securitypractice.auth.application.AuthService;
+import com.jane.securitypractice.auth.application.SessionManagementService;
 import com.jane.securitypractice.auth.dto.UserRegisterDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,19 +10,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
+
+    private final SessionManagementService sessionManagementService;
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") UserRegisterDto userDto, RedirectAttributes redirectAttributes) {
@@ -65,5 +67,20 @@ public class AuthController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/user/change-password";
         }
+    }
+
+    // 내 세션 목록
+    @GetMapping("/my-sessions")
+    public String mySessionsPage(Model model, Authentication authentication) {
+        List<SessionManagementService.MySessionInfoResponse> mySessions= sessionManagementService.getMySessions(authentication);
+        model.addAttribute("sessions", mySessions);
+        return "user/my-session-list";
+    }
+
+    @PostMapping("/my-sessions/expire/{sessionId}")
+    @ResponseBody
+    public String expireSession(@PathVariable String sessionId, Authentication authentication) {
+        boolean result = sessionManagementService.expireMySession(sessionId, authentication);
+        return result ? "세션 만료 완료" : "해당 세션을 찾을 수 없습니다.";
     }
 }
